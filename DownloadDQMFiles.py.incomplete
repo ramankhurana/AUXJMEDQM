@@ -1,0 +1,25 @@
+import os
+import requests
+import mechanize
+
+runs = [299061, 299062]#, 299064, 299065, 299067, 299096, 299149, 299178, 299180, 299184, 299185, 299316, 299317, 299318, 299324, 299325, 299326]
+browser = mechanize.Browser()
+url = 'https://cmsweb.cern.ch/dqm/offline/data/browse/ROOT/OfflineData/Run2017/JetHT/0002991xx/DQM_V0001_R000299184__JetHT__Run2017B-PromptReco-v2__DQMIO.root'
+browser.add_client_certificate(url, 'userkey.pem','usercert.pem')
+browser.set_handle_robots( False )
+
+#browser.add_client_certificate(url, '','Cert.p12')
+for run in runs:
+    run_ = str(run)
+    prefix_ = run_[:4]
+    url = 'https://cmsweb.cern.ch/dqm/offline/data/browse/ROOT/OfflineData/Run2017/JetHT/000'+prefix_+'xx/DQM_V0001_R000'+run_+'__JetHT__Run2017B-PromptReco-v2__DQMIO.root'
+    #print url
+    #url = "http://www.hep.wisc.edu/~khurana/DQM_V0001_R000000001__JetMET__CMSSW_8_0_3__Harvesting.root"
+    browser.retrieve(url,'test1'+run_+'.root')
+    '''
+    data = {'foo':'Continue'}
+    print url
+    r = requests.post(url, data=data, verify=True)
+    '''
+    #os.system ('python -m webbrowser -t  "https://cmsweb.cern.ch/dqm/offline/data/browse/ROOT/OfflineData/Run2017/JetHT/000'+prefix_+'xx/DQM_V0001_R000'+run_+'__JetHT__Run2017B-PromptReco-v2__DQMIO.root"')
+    #os.system('sleep 10')
