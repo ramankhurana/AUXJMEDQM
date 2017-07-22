@@ -1,0 +1,54 @@
+*Assumptions*
+
+- This package is to make summary plots using the DQMIO files as input. 
+
+- This assumes you have the package installed in the lxplus area and you have a grid certificate installed and configured already. 
+
+*Download area setup* 
+
+- Each user is given access to my EOS area: 
+  /eos/cms/store/user/khurana/AUXJMEDQM
+
+- Create a directory with your CERN usename, e.g. I will do it like: 
+  mkdir /eos/cms/store/user/khurana/AUXJMEDQM/khurana
+
+- Inside this create the date directory, the date when you are running the code (today is 22 July): 
+  mkdir /eos/cms/store/user/khurana/AUXJMEDQM/khurana/22July2017/
+
+- Never try to delete anything from this area if you did some mistake. Just let me know and I will remove it for you.  In the mean time just make a new directory, e.g. 
+  mkdir   /eos/cms/store/user/khurana/AUXJMEDQM/khurana/22July2017V2
+  and copy the files here. 
+
+*Download the files* 
+
+- We are using a mixture of das_client and xrdcp to copy the DQMIO files to CERN EOS. 
+
+- You have to make a list of the run numbers inside DownloadFiles.py. 
+  change the variable named: runs[..,..,..,..]
+  
+- You can keep as many runs as you want in this list. But we prefer you keep st least one run from 2016, and all the runs you certify this week. 
+
+- You may have to change the dataset name, depending on which ERA runs are being certified and if the JetHT dataset is available or not. 
+
+- Once we copy them using the following command:
+  python DownloadFiles.py 
+  we can run the scripts to make the summary plots
+
+*Run the plotting script* 
+
+- This assume that all the rootfiles have been placed in the EOS area as mentioned above. 
+
+- You have to add more variables in the SteerJMEDQMSummary.py, if you want to see their summary. 
+
+- For now it is possible to make these summary plots only for the 1D histograms. 
+
+- You can run the macro using: 
+  python SteerJMEDQMSummary.py
+
+  	 - This will make a text file with name of the rootfiles, with relative path. 
+
+	 - Then loop over all these files and copy the histograms specified in the macro. 
+
+	 - This will make two plots for each variable. 
+	   1. Comparison of the variable for each run. 
+	   2. Mean and RMS value of the variable for each run shown as a bin, Similar to history plot but only for those runs which you specify in the DownloadDQMFiles.py
