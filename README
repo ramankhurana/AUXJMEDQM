@@ -30,6 +30,12 @@
 
 - You may have to change the dataset name, depending on which ERA runs are being certified and if the JetHT dataset is available or not. 
 
+- set the grid proxy using: 
+    - voms-proxy-init  
+    - DownloadFiles.py will not work if you don't have a grid certificate installed in your area. 
+    - You have to check once if all files are downloaded, sometimes it may not be able to download one more more files, sometime all of them, in that case you have to download it from the DQM-GUI web page. 
+    - This is also not reliable when DAS has two files for one run, usually there is just one rootifile but there can be multiple, this is wrong because the statistics in your plot will be relatively less and conclusion might be different if the files which are not used has problematic LS. 
+    - In future this will copy all the files and merge them automatically. 
 - Once we copy them using the following command:
   python DownloadFiles.py 
   we can run the scripts to make the summary plots
@@ -52,3 +58,6 @@
 	 - This will make two plots for each variable. 
 	   1. Comparison of the variable for each run. 
 	   2. Mean and RMS value of the variable for each run shown as a bin, Similar to history plot but only for those runs which you specify in the DownloadDQMFiles.py
+
+
+** More details to be written in future ** 
